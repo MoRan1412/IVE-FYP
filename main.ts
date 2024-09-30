@@ -1,6 +1,10 @@
 function avoidObstacle () {
     if (distance < 500) {
         avoidDir = 0
+        controlMotors(1)
+    } else {
+        avoidDir = 1
+        controlMotors(0)
     }
 }
 // Function to receive direction from Raspberry Pi and control motors
@@ -77,7 +81,6 @@ basic.forever(function () {
     DigitalPin.P1,
     PingUnit.MicroSeconds
     )
-    // Receive movement direction from Raspberry Pi
-    receiveData()
+    avoidObstacle()
     basic.pause(200)
 })
